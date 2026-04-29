@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>あにあにの遊び場</title>
-    <meta name="description" content="インディーゲームのポータル。Battle a la carte / 天涯比隣 / 今後制作予定のゲームへ移動し、更新記事とコメントを確認できます。">
+    <meta name="description" content="インディーゲームのポータル。Battle a la carte / 今後制作予定のゲームへ移動し、更新記事とコメントを確認できます。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="aniani.css?v=20260421s1">
+    <link rel="stylesheet" href="aniani.css?v=20260429t1">
 </head>
 <body>
     <div class="bg-glow bg-glow-a"></div>
@@ -68,19 +68,6 @@
                     </div>
                 </article>
 
-                <article class="game-card preparing">
-                    <div class="game-status">公開中</div>
-                    <a class="game-visual-link" href="https://donadonaa24-cyber.github.io/tenngaihirinn/" target="_blank" rel="noopener noreferrer" title="天涯比隣ページへ">
-                        <img class="game-visual" src="images/riot.png" alt="天涯比隣 RIOT イラスト" loading="lazy">
-                    </a>
-                    <h4>天涯比隣</h4>
-                    <p>ホームページとゲーム画面へ直接移動できます。</p>
-                    <div class="game-actions">
-                        <a class="btn btn-mini btn-primary" href="https://donadonaa24-cyber.github.io/tenngaihirinn/" target="_blank" rel="noopener noreferrer">ホームページ</a>
-                        <a class="btn btn-mini btn-ghost" href="https://donadonaa24-cyber.github.io/tenngaihirinn/game.html" target="_blank" rel="noopener noreferrer">ゲーム画面</a>
-                    </div>
-                </article>
-
                 <article class="game-card future">
                     <div class="game-status">予定</div>
                     <h4>次回作（仮）</h4>
@@ -89,6 +76,220 @@
                         <button class="btn btn-mini btn-disabled" type="button" disabled>準備中</button>
                     </div>
                 </article>
+            </div>
+        </section>
+
+        <section id="comments" class="section">
+            <div class="section-heading">
+                <p class="section-label">COMMENTS</p>
+                <h3>来訪者コメント</h3>
+            </div>
+
+            <div class="comments-layout">
+                <article class="panel">
+                    <h4>コメント一覧</h4>
+                    <div id="guestbook-list" class="guestbook-list"></div>
+                </article>
+
+                <article class="panel">
+                    <h4>コメントを書く</h4>
+                    <form id="guestbook-form" class="article-form">
+                        <label for="guest-name">名前（任意）</label>
+                        <input id="guest-name" name="guestName" type="text" maxlength="24" placeholder="ゲスト">
+
+                        <label for="guest-message">コメント</label>
+                        <textarea id="guest-message" name="guestMessage" rows="6" maxlength="400" required placeholder="感想や応援メッセージを入力"></textarea>
+
+                        <div class="form-actions">
+                            <button class="btn btn-primary" type="submit">コメント投稿</button>
+                            <button class="btn btn-ghost" type="reset">クリア</button>
+                        </div>
+                    </form>
+                </article>
+            </div>
+        </section>
+
+        <section id="mini-game" class="section section-alt">
+            <div class="section-heading">
+                <p class="section-label">MINI GAME</p>
+                <h3>ミニゲームアーケード</h3>
+            </div>
+
+            <div id="mini-games-tabs" class="mini-games-tabs">
+                <div class="mini-game-stage">
+                <article id="mini-panel-ttt" class="panel mini-game-panel mini-tab-panel is-active" data-mini-panel="ttt" role="tabpanel" aria-labelledby="mini-tab-ttt">
+                    <h4>〇×ゲーム（3目並べ）</h4>
+                    <p class="panel-note">交互にマスを押して、縦・横・斜めのどれかで先に3つそろえたら勝ちです。</p>
+                    <div id="ttt-board" class="ttt-board" aria-label="〇×ゲーム盤面"></div>
+                    <p id="ttt-status" class="ttt-status">○ の番です</p>
+                    <div class="form-actions">
+                        <button class="btn btn-primary btn-mini" type="button" id="ttt-reset">リセット</button>
+                    </div>
+                </article>
+
+                <article id="mini-panel-memory" class="panel mini-game-panel memory-panel mini-tab-panel" data-mini-panel="memory" role="tabpanel" aria-labelledby="mini-tab-memory">
+                    <h4>神経衰弱（材料カード）</h4>
+                    <p class="panel-note">材料カード15種類を2枚ずつ使用。すべてそろえるまでの時間でスコアを競います。</p>
+
+                    <div class="memory-controls">
+                        <label for="memory-nickname">ニックネーム</label>
+                        <input id="memory-nickname" type="text" maxlength="20" placeholder="プレイヤー名を入力">
+                        <div class="memory-button-row">
+                            <button class="btn btn-primary btn-mini" type="button" id="memory-start">スタート</button>
+                            <button class="btn btn-ghost btn-mini" type="button" id="memory-reset">リセット</button>
+                        </div>
+                    </div>
+
+                    <div class="memory-hud">
+                        <p id="memory-status">スタートを押すと開始します。</p>
+                        <p id="memory-timer">00:00.000</p>
+                    </div>
+
+                    <div id="memory-board" class="memory-board" aria-label="神経衰弱盤面"></div>
+
+                    <div class="memory-ranking">
+                        <h5>ランキング（速い順）</h5>
+                        <ol id="memory-ranking-list" class="memory-ranking-list"></ol>
+                    </div>
+                </article>
+
+                <article id="mini-panel-mole" class="panel mini-game-panel mini-tab-panel" data-mini-panel="mole" role="tabpanel" aria-labelledby="mini-tab-mole">
+                    <h4>もぐらたたき（イベント素材）</h4>
+                    <p class="panel-note">出てきた画像を時間内に叩こう。バトルアラカルトのイベント素材で遊べます。</p>
+                    <div class="mini-hud">
+                        <p id="mole-status">スタートで開始します。</p>
+                        <p>残り: <span id="mole-time">20.0</span>s / スコア: <span id="mole-score">0</span></p>
+                    </div>
+                    <div id="mole-board" class="mole-board" aria-label="もぐらたたき盤面"></div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary btn-mini" type="button" id="mole-start">スタート</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="mole-reset">リセット</button>
+                    </div>
+                </article>
+
+                <article id="mini-panel-reaction" class="panel mini-game-panel mini-tab-panel" data-mini-panel="reaction" role="tabpanel" aria-labelledby="mini-tab-reaction">
+                    <h4>反射神経テスト（カットイン）</h4>
+                    <p class="panel-note">「タップ！」表示が出たら即クリック。フライングすると失敗です。</p>
+                    <div class="mini-hud">
+                        <p id="reaction-status">スタートで準備開始。</p>
+                        <p>ベスト: <span id="reaction-best">-- ms</span></p>
+                    </div>
+                    <button id="reaction-target" class="reaction-target" type="button" aria-label="反射神経テストターゲット">
+                        <img id="reaction-image" src="assets/images/character-icons/akatsuki-icons.png" alt="反射神経テスト画像" loading="lazy">
+                        <span id="reaction-signal">READY</span>
+                    </button>
+                    <div class="form-actions">
+                        <button class="btn btn-primary btn-mini" type="button" id="reaction-start">スタート</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="reaction-reset">リセット</button>
+                    </div>
+                </article>
+
+                <article id="mini-panel-breakout" class="panel mini-game-panel breakout-panel mini-tab-panel" data-mini-panel="breakout" role="tabpanel" aria-labelledby="mini-tab-breakout">
+                    <h4>ブロック崩し（料理ブロック）</h4>
+                    <p class="panel-note">パドルでボールを返してブロックを全破壊。ブロックはレシピ画像です。</p>
+                    <div class="mini-hud">
+                        <p id="breakout-status">スタートで開始。</p>
+                        <p>スコア: <span id="breakout-score">0</span> / 残機: <span id="breakout-lives">3</span></p>
+                    </div>
+                    <canvas id="breakout-canvas" class="breakout-canvas" width="360" height="300" aria-label="ブロック崩しキャンバス"></canvas>
+                    <div class="form-actions">
+                        <button class="btn btn-primary btn-mini" type="button" id="breakout-start">スタート</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="breakout-reset">リセット</button>
+                    </div>
+                </article>
+
+                <article id="mini-panel-snake" class="panel mini-game-panel mini-tab-panel" data-mini-panel="snake" role="tabpanel" aria-labelledby="mini-tab-snake">
+                    <h4>スネークゲーム（蛇ゲーム）</h4>
+                    <p class="panel-note">エサを食べて伸びる定番ゲーム。壁や自分の体に当たると終了です。</p>
+                    <div class="mini-hud">
+                        <p id="snake-status">スタートで開始。</p>
+                        <p>スコア: <span id="snake-score">0</span></p>
+                    </div>
+                    <canvas id="snake-canvas" class="snake-canvas" width="300" height="300" aria-label="スネークゲーム盤面"></canvas>
+                    <div class="form-actions mini-pad-controls">
+                        <button class="btn btn-ghost btn-mini" type="button" id="snake-up">↑</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="snake-left">←</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="snake-down">↓</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="snake-right">→</button>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary btn-mini" type="button" id="snake-start">スタート</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="snake-reset">リセット</button>
+                    </div>
+                </article>
+
+                <article id="mini-panel-tetris" class="panel mini-game-panel mini-tab-panel" data-mini-panel="tetris" role="tabpanel" aria-labelledby="mini-tab-tetris">
+                    <h4>簡単テトリス</h4>
+                    <p class="panel-note">ブロックを回転・移動して列をそろえるシンプル版です。</p>
+                    <div class="mini-hud">
+                        <p id="tetris-status">スタートで開始。</p>
+                        <p>スコア: <span id="tetris-score">0</span> / ライン: <span id="tetris-lines">0</span></p>
+                    </div>
+                    <canvas id="tetris-canvas" class="tetris-canvas" width="200" height="360" aria-label="テトリス盤面"></canvas>
+                    <div class="form-actions mini-pad-controls">
+                        <button class="btn btn-ghost btn-mini" type="button" id="tetris-left">←</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="tetris-right">→</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="tetris-rotate">回転</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="tetris-down">↓</button>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary btn-mini" type="button" id="tetris-start">スタート</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="tetris-reset">リセット</button>
+                    </div>
+                </article>
+
+                <article id="mini-panel-drop" class="panel mini-game-panel drop-panel mini-tab-panel" data-mini-panel="drop" role="tabpanel" aria-labelledby="mini-tab-drop">
+                    <h4>落ちものパズル（食材ドロップ）</h4>
+                    <p class="panel-note">同じ食材を3つ以上並べると消去。左右移動と高速落下でスコアを伸ばそう。</p>
+                    <div class="mini-hud">
+                        <p id="drop-status">スタートで開始。</p>
+                        <p>スコア: <span id="drop-score">0</span></p>
+                    </div>
+                    <div id="drop-board" class="drop-board" aria-label="落ちものパズル盤面"></div>
+                    <div class="form-actions drop-controls">
+                        <button class="btn btn-ghost btn-mini" type="button" id="drop-left">← 左</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="drop-right">右 →</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="drop-down">↓ 落下</button>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary btn-mini" type="button" id="drop-start">スタート</button>
+                        <button class="btn btn-ghost btn-mini" type="button" id="drop-reset">リセット</button>
+                    </div>
+                </article>
+                </div>
+
+                <aside class="mini-game-tablist" role="tablist" aria-label="ミニゲーム選択">
+                    <button id="mini-tab-ttt" class="mini-game-tab is-active" type="button" data-mini-tab="ttt" role="tab" aria-selected="true" aria-controls="mini-panel-ttt">〇×ゲーム</button>
+                    <button id="mini-tab-memory" class="mini-game-tab" type="button" data-mini-tab="memory" role="tab" aria-selected="false" aria-controls="mini-panel-memory">神経衰弱</button>
+                    <button id="mini-tab-mole" class="mini-game-tab" type="button" data-mini-tab="mole" role="tab" aria-selected="false" aria-controls="mini-panel-mole">もぐらたたき</button>
+                    <button id="mini-tab-reaction" class="mini-game-tab" type="button" data-mini-tab="reaction" role="tab" aria-selected="false" aria-controls="mini-panel-reaction">反射神経テスト</button>
+                    <button id="mini-tab-breakout" class="mini-game-tab" type="button" data-mini-tab="breakout" role="tab" aria-selected="false" aria-controls="mini-panel-breakout">ブロック崩し</button>
+                    <button id="mini-tab-snake" class="mini-game-tab" type="button" data-mini-tab="snake" role="tab" aria-selected="false" aria-controls="mini-panel-snake">スネークゲーム</button>
+                    <button id="mini-tab-tetris" class="mini-game-tab" type="button" data-mini-tab="tetris" role="tab" aria-selected="false" aria-controls="mini-panel-tetris">簡単テトリス</button>
+                    <button id="mini-tab-drop" class="mini-game-tab" type="button" data-mini-tab="drop" role="tab" aria-selected="false" aria-controls="mini-panel-drop">落ちものパズル</button>
+                </aside>
+            </div>
+        </section>
+
+        <section id="links" class="section">
+            <div class="section-heading">
+                <p class="section-label">LINKS</p>
+                <h3>外部リンク</h3>
+            </div>
+
+            <div class="social-grid">
+                <a class="social-card" href="https://x.com/aniani_asobiba" target="_blank" rel="noopener noreferrer">
+                    <h4>X</h4>
+                    <p>@aniani_asobiba</p>
+                </a>
+                <a class="social-card" href="https://note.com/aniani_asobiba" target="_blank" rel="noopener noreferrer">
+                    <h4>note</h4>
+                    <p>更新ノート</p>
+                </a>
+                <a class="social-card" href="https://donadonaa24-cyber.github.io/battle-a-la-carte--/" target="_blank" rel="noopener noreferrer">
+                    <h4>Battle a la carte</h4>
+                    <p>公式ホームページ</p>
+                </a>
             </div>
         </section>
 
@@ -139,107 +340,6 @@
                 </article>
             </div>
         </section>
-
-        <section id="comments" class="section">
-            <div class="section-heading">
-                <p class="section-label">COMMENTS</p>
-                <h3>来訪者コメント</h3>
-            </div>
-
-            <div class="comments-layout">
-                <article class="panel">
-                    <h4>コメント一覧</h4>
-                    <div id="guestbook-list" class="guestbook-list"></div>
-                </article>
-
-                <article class="panel">
-                    <h4>コメントを書く</h4>
-                    <form id="guestbook-form" class="article-form">
-                        <label for="guest-name">名前（任意）</label>
-                        <input id="guest-name" name="guestName" type="text" maxlength="24" placeholder="ゲスト">
-
-                        <label for="guest-message">コメント</label>
-                        <textarea id="guest-message" name="guestMessage" rows="6" maxlength="400" required placeholder="感想や応援メッセージを入力"></textarea>
-
-                        <div class="form-actions">
-                            <button class="btn btn-primary" type="submit">コメント投稿</button>
-                            <button class="btn btn-ghost" type="reset">クリア</button>
-                        </div>
-                    </form>
-                </article>
-            </div>
-        </section>
-
-        <section id="mini-game" class="section section-alt">
-            <div class="section-heading">
-                <p class="section-label">MINI GAME</p>
-                <h3>ミニゲーム</h3>
-            </div>
-
-            <div class="mini-games-grid">
-                <article class="panel mini-game-panel">
-                    <h4>〇×ゲーム（3目並べ）</h4>
-                    <p class="panel-note">交互にマスを押して、縦・横・斜めのどれかで先に3つそろえたら勝ちです。</p>
-                    <div id="ttt-board" class="ttt-board" aria-label="〇×ゲーム盤面"></div>
-                    <p id="ttt-status" class="ttt-status">○ の番です</p>
-                    <div class="form-actions">
-                        <button class="btn btn-primary btn-mini" type="button" id="ttt-reset">リセット</button>
-                    </div>
-                </article>
-
-                <article class="panel mini-game-panel memory-panel">
-                    <h4>神経衰弱（材料カード）</h4>
-                    <p class="panel-note">材料カード15種類を2枚ずつ使用。すべてそろえるまでの時間でスコアを競います。</p>
-
-                    <div class="memory-controls">
-                        <label for="memory-nickname">ニックネーム</label>
-                        <input id="memory-nickname" type="text" maxlength="20" placeholder="プレイヤー名を入力">
-                        <div class="memory-button-row">
-                            <button class="btn btn-primary btn-mini" type="button" id="memory-start">スタート</button>
-                            <button class="btn btn-ghost btn-mini" type="button" id="memory-reset">リセット</button>
-                        </div>
-                    </div>
-
-                    <div class="memory-hud">
-                        <p id="memory-status">スタートを押すと開始します。</p>
-                        <p id="memory-timer">00:00.000</p>
-                    </div>
-
-                    <div id="memory-board" class="memory-board" aria-label="神経衰弱盤面"></div>
-
-                    <div class="memory-ranking">
-                        <h5>ランキング（速い順）</h5>
-                        <ol id="memory-ranking-list" class="memory-ranking-list"></ol>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section id="links" class="section">
-            <div class="section-heading">
-                <p class="section-label">LINKS</p>
-                <h3>外部リンク</h3>
-            </div>
-
-            <div class="social-grid">
-                <a class="social-card" href="https://x.com/aniani_asobiba" target="_blank" rel="noopener noreferrer">
-                    <h4>X</h4>
-                    <p>@aniani_asobiba</p>
-                </a>
-                <a class="social-card" href="https://note.com/aniani_asobiba" target="_blank" rel="noopener noreferrer">
-                    <h4>note</h4>
-                    <p>更新ノート</p>
-                </a>
-                <a class="social-card" href="https://donadonaa24-cyber.github.io/battle-a-la-carte--/" target="_blank" rel="noopener noreferrer">
-                    <h4>Battle a la carte</h4>
-                    <p>公式ホームページ</p>
-                </a>
-                <a class="social-card" href="https://donadonaa24-cyber.github.io/tenngaihirinn/" target="_blank" rel="noopener noreferrer">
-                    <h4>天涯比隣</h4>
-                    <p>公開ページ</p>
-                </a>
-            </div>
-        </section>
     </main>
 
     <footer class="site-footer">
@@ -247,6 +347,6 @@
         <a href="https://donadonaa24-cyber.github.io/battle-a-la-carte--/" target="_blank" rel="noopener noreferrer">Battle a la carte 公式ホームページへ</a>
     </footer>
 
-    <script src="aniani.js?v=20260421s1"></script>
+    <script src="aniani.js?v=20260429t1"></script>
 </body>
 </html>

@@ -17,7 +17,6 @@
 - `index.html`
 - `aniani.css`
 - `aniani.js`
-- `images/riot.png`
 - `assets/images/card-back.png`
 - `assets/images/events/monomono-kokan.png`
 - `assets/images/cards/*.png`（材料カード15種）
